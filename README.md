@@ -11,8 +11,8 @@ pyjosa
     [GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import pyjosa
-    >>> print pyjosa.replace_josa(u"아노아(은)는 자루(을)를 칭송했다")
-    아노아는 자루를 칭송했다
+    >>> print pyjosa.replace_josa(u"아노아(은)는 자루(을)를 칭송하고 절(으)로 들어갔다.")
+    아노아는 자루를 칭송하고 절로 들어갔다.
     >>>     
 
 #### 코드
@@ -20,5 +20,5 @@ pyjosa
     # -*- coding:utf8 -*-
     import pyjosa
 
-    print pyjosa.replace_josa(u"아노아(은)는 자루(을)를 칭송했다")
+    print pyjosa.replace_josa(u"아노아(은)는 자루(을)를 절(으)로 들어갔다.")
 
