@@ -3,12 +3,13 @@ import re
 
 JOSA_PAIRD = {
     u"(이)가" : (u"이", u"가"),
+    u"(와)과" : (u"과", u"와"),
     u"(을)를" : (u"을", u"를"),
     u"(은)는" : (u"은", u"는"),
     u"(으)로" : (u"으로", u"로"),
 }
 
-JOSA_REGEX = re.compile(u"\(이\)가|\(을\)를|\(은\)는|\(으\)로")
+JOSA_REGEX = re.compile(u"\(이\)가|\(와\)과|\\(을\)를|\(은\)는|\(으\)로")
 
 def has_jong(char):
     char_code = ord(char)
@@ -49,7 +50,7 @@ if __name__ == '__main__':
         def test(self):
             self.assertEquals(replace_josa(u"아노아(이)가 공격했다"), u"아노아가 공격했다")
             self.assertEquals(replace_josa(u"주펫(이)가 공격했다"), u"주펫이 공격했다")
-            self.assertEquals(replace_josa(u"아노아(은)는 자루(을)를 칭송하고 절(으)로 들어갔습니다."), u"아노아는 자루를 칭송하고 절로 들어갔습니다.")
+            self.assertEquals(replace_josa(u"아노아(은)는 자루(와)과 오리(을)를 칭송하고 절(으)로 들어갔습니다."), u"아노아는 자루와 오리를 칭송하고 절로 들어갔습니다.")
 
     unittest.main()
 
