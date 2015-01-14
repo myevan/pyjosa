@@ -15,7 +15,7 @@ JOSA_PAIRD = {
 JOSA_REGEX = re.compile(u"\(이\)가|\(와\)과|\(을\)를|\(은\)는|\(아\)야|\(이\)여|\(으\)로|\(이\)라고")
 
 
-def choose_josa(prev_char, josa_key):
+def choose_josa(prev_char, josa_key, josa_pair):
     """
     조사 선택
 
@@ -28,21 +28,21 @@ def choose_josa(prev_char, josa_key):
 
     # 한글 코드 영역(가 ~ 힣) 아닌 경우 
     if char_code < 0xac00 or char_code > 0xD7A3: 
-        return JOSA_PAIRD[josa_key][1]
+        return josa_pair[1]
 
     local_code = char_code - 0xac00 # '가' 이후 로컬 코드
     jong_code = local_code % 28
 
     # 종성이 없는 경우
     if jong_code == 0: 
-        return JOSA_PAIRD[josa_key][1]
+        return josa_pair[1]
         
     # 종성이 있는 경우
     if josa_key == u"(으)로":
         if jong_code == 8: # ㄹ 종성인 경우
-            return JOSA_PAIRD[josa_key][1]
+            return josa_pair[1]
 
-    return JOSA_PAIRD[josa_key][0]
+    return josa_pair[0]
 
 def replace_josa(src):
     tokens = []
@@ -53,7 +53,7 @@ def replace_josa(src):
         tokens.append(prev_token)
 
         josa_key = mo.group()
-        tokens.append(choose_josa(prev_char, josa_key))
+        tokens.append(choose_josa(prev_char, josa_key, JOSA_PAIRD[josa_key]))
 
         base_index = mo.end()
 
