@@ -19,10 +19,9 @@ def choose_josa(prev_char, josa_key, josa_pair):
     """
     조사 선택
 
-    @param prev_char 앞 글자
-    @param josa_key 조사 키
-    @param josas 조사 리스트
-    @return 선택 조사
+    :param prev_char 앞 글자
+    :param josa_key 조사 키
+    :param josas 조사 리스트
     """
     char_code = ord(prev_char)
 
