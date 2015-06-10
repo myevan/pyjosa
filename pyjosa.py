@@ -9,10 +9,10 @@ JOSA_PAIRD = {
     u"(으)로" : (u"으로", u"로"),
     u"(아)야" : (u"아", u"야"),
     u"(이)여" : (u"이여", u"여"),
-    u"(이)라고" : (u"이라고", u"라고"),
+    u"(이)라" : (u"이라", u"라"),
 }
 
-JOSA_REGEX = re.compile(u"\(이\)가|\(와\)과|\(을\)를|\(은\)는|\(아\)야|\(이\)여|\(으\)로|\(이\)라고")
+JOSA_REGEX = re.compile(u"\(이\)가|\(와\)과|\(을\)를|\(은\)는|\(아\)야|\(이\)여|\(으\)로|\(이\)라")
 
 
 def choose_josa(prev_char, josa_key, josa_pair):
@@ -107,6 +107,14 @@ if __name__ == '__main__':
             self.assertEquals(replace_josa(
                 u"나(이)라고 어쩔 수 있겠니? 별(이)라고 불러줘. 라면(이)라고 했잖아."),
                 u"나라고 어쩔 수 있겠니? 별이라고 불러줘. 라면이라고 했잖아.")
+
+            self.assertEquals(replace_josa(
+                u"라면(이)라면 어떨까? 밥(이)라능~"),
+                u"라면이라면 어떨까? 밥이라능~")
+
+            self.assertEquals(replace_josa(
+                u"너(이)라면 어떨까? 나(이)라능~"),
+                u"너라면 어떨까? 나라능~")
 
     unittest.main()
 
